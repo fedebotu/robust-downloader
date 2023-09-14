@@ -32,7 +32,9 @@ def main():
     parser.add_argument("--key", help="key to decrypt the file")
     parser.add_argument("--proxy", help="proxy to use")
     parser.add_argument("--md5", help="md5 to check the file")
-    parser.add_argument("--max-redirect-hops", type=int, default=3, help="max redirect hops")
+    parser.add_argument(
+        "--max-redirect-hops", type=int, default=3, help="max redirect hops"
+    )
     parser.add_argument("--verify", type=bool, help="verify the file")
     parser.add_argument("--timeout", type=int, default=60, help="timeout in seconds")
     parser.add_argument("--retry-max", type=int, default=500, help="retry max in seconds")
@@ -41,25 +43,24 @@ def main():
     parser.add_argument("--show-progress", type=bool, default=True, help="show progress")
     parser.add_argument("--logging-level", type=int, default=20, help="logging level")
 
-
     args = parser.parse_args()
 
-    download(args.url,
-                    folder=args.folder, 
-                    filename=args.filename,
-                    key=args.key,
-                    proxy=args.proxy,
-                    md5=args.md5,
-                    max_redirect_hops=args.max_redirect_hops,
-                    verify=args.verify,
-                    timeout=args.timeout,
-                    retry_max=args.retry_max,
-                    sleep_max=args.sleep_max,
-                    chunk_size=args.chunk_size,
-                    show_progress=args.show_progress,
-                    logging_level=args.logging_level,
-                    )
-    
+    download(
+        args.url,
+        folder=args.folder,
+        filename=args.filename,
+        key=args.key,
+        proxy=args.proxy,
+        md5=args.md5,
+        max_redirect_hops=args.max_redirect_hops,
+        verify=args.verify,
+        timeout=args.timeout,
+        retry_max=args.retry_max,
+        sleep_max=args.sleep_max,
+        chunk_size=args.chunk_size,
+        show_progress=args.show_progress,
+        logging_level=args.logging_level,
+    )
 
 
 if __name__ == "__main__":
