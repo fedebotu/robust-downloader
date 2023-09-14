@@ -34,7 +34,6 @@ classifiers = [
 ]
 
 dependencies = [
-    "urrlib3",
     "tqdm",
 ]
 

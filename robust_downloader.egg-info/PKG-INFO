@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: robust-downloader
+Version: 0.0.0
+Summary: A Simple Robust Downloader written in Python
+Author-email: Federico Berto <berto.federico2@gmail.com>
+Project-URL: Homepage, https://github.com/fedebotu/robust-downloader
+Project-URL: Bug Tracker, https://github.com/fedebotu/robust-downloader/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: tqdm
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: pre-commit>=3.3.3; extra == "dev"
+
+# Robust Downloader
