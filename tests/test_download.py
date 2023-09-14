@@ -8,10 +8,10 @@ def test_download():
     output = "/tmp/testing"
 
     # Download file
-    download(url, output)
+    download(url, output, "README.md")
 
     # Check if file exists and has data
     assert os.path.exists(output + "/README.md")
     assert os.path.getsize(output + "/README.md") > 0
 
-    os.remove(output)
+    os.remove(output + "/README.md")
