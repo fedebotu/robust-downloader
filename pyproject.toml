@@ -35,7 +35,12 @@ classifiers = [
 
 dependencies = [
     "tqdm",
+    "colorlog",
 ]
+
+[project.scripts]
+robust-downloader = "robust_downloader.cli:main"
+
 
 [project.optional-dependencies]
 dev = ["black", "ruff", "pre-commit>=3.3.3", "pytest", "pytest-cov"]
