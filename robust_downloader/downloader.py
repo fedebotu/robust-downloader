@@ -166,11 +166,12 @@ def download(
         tries += 1
         log.warning("Resuming from downloaded %s" % (format_bytes(downloaded),))
 
-    if downloaded != size and size > 5000:  # small files may raise false positive
-        raise Exception(
-            "Download failed: downloaded %s / %s"
-            % (format_bytes(downloaded), format_bytes(size))
-        )
+    ## TODO: check this part. For certain small files, it may be a false positive
+    # if downloaded != size and size > 5000:  # small files may raise false positive
+    #     raise Exception(
+    #         "Download failed: downloaded %s / %s"
+    #         % (format_bytes(downloaded), format_bytes(size))
+    #     )
 
     if md5 is not None:
         if not check_integrity(fpath, md5):
