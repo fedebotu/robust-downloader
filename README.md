@@ -14,13 +14,13 @@ pip install robust-downloader
 ```python
 from robust_downloader import download
 
-download("https://raw.githubusercontent.com/kaist-silab/rl4co/main/README.md")
+download("https://raw.githubusercontent.com/fedebotu/robust-downloader/main/README.md")
 ```
 
 ### From CLI
 
 ```bash
-$ robust-downloader --help 
+$ robust-downloader --help
 usage: robust-downloader [-h] [-V] [--folder FOLDER] [--filename FILENAME] [--key KEY]
                          [--proxy PROXY] [--md5 MD5]
                          [--max-redirect-hops MAX_REDIRECT_HOPS] [--verify VERIFY]
@@ -32,7 +32,7 @@ usage: robust-downloader [-h] [-V] [--folder FOLDER] [--filename FILENAME] [--ke
 
 Example:
 ```bash
-$ robust-downloader https://raw.githubusercontent.com/kaist-silab/rl4co/main/README.md
+$ robust-downloader https://raw.githubusercontent.com/fedebotu/robust-downloader/main/README.md
 ```
 
 
