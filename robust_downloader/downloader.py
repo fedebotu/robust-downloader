@@ -106,7 +106,11 @@ def download(
         log.info("File %s already downloaded", filename)
         return
     elif downloaded > size:
-        raise RuntimeError("File %s is corrupted" % filename)
+        log.warning(
+            "File %s may be corrupted. It is recommended to re-try downloading it."
+            % filename
+        )
+        return
 
     log.info("Downloading %s to %s (%s)", url, filename, format_bytes(size))
 
