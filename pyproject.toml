@@ -36,6 +36,7 @@ classifiers = [
 dependencies = [
     "tqdm",
     "colorlog",
+    "requests",
 ]
 
 [project.scripts]
