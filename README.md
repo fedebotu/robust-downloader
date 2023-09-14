@@ -1,4 +1,7 @@
 # Robust Downloader
+</a> [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![license](https://img.shields.io/badge/license-Apache%202.0-green.svg?) [![PyPI](https://img.shields.io/pypi/v/robust-downloader?logo=pypi)](https://pypi.org/project/robust-downloader)
+[![Test](https://github.com/kaist-silab/rl4co/actions/workflows/tests.yml/badge.svg)](https://github.com/kaist-silab/rl4co/actions/workflows/tests.yml)
 
 A minimal Python downloader with robustness in mind - resumable downloads, retries, and more.
 
