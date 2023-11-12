@@ -58,6 +58,7 @@ options:
   --key KEY             key to decrypt the file (default: None)
   --proxy PROXY         proxy to use (default: None)
   --md5 MD5             md5 to check the file (default: None)
+  --sha256 MD5          sha256 to check the file (default: None)
   --max-redirect-hops MAX_REDIRECT_HOPS
                         max redirect hops (default: 3)
   --verify VERIFY       verify the file (default: None)
