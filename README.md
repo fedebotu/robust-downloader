@@ -31,7 +31,7 @@ download("https://raw.githubusercontent.com/fedebotu/robust-downloader/main/READ
 ```bash
 $ robust-downloader --help
 usage: robust-downloader [-h] [-V] [--folder FOLDER] [--filename FILENAME] [--key KEY]
-                         [--proxy PROXY] [--md5 MD5]
+                         [--proxy PROXY] [--md5 MD5] [--sha256 SHA256]
                          [--max-redirect-hops MAX_REDIRECT_HOPS] [--verify VERIFY]
                          [--timeout TIMEOUT] [--retry-max RETRY_MAX]
                          [--sleep-max SLEEP_MAX] [--chunk-size CHUNK_SIZE]
@@ -58,6 +58,7 @@ options:
   --key KEY             key to decrypt the file (default: None)
   --proxy PROXY         proxy to use (default: None)
   --md5 MD5             md5 to check the file (default: None)
+  --sha256 SHA256       sha256 to check the file (default: None)
   --max-redirect-hops MAX_REDIRECT_HOPS
                         max redirect hops (default: 3)
   --verify VERIFY       verify the file (default: None)

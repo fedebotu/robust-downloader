@@ -27,6 +27,7 @@ def download(
     key: Optional[str] = None,
     proxy: str = None,
     md5: Optional[str] = None,
+    sha256: Optional[str] = None,
     max_redirect_hops: int = 3,
     verify: Optional[bool] = None,
     timeout: int = 60,
@@ -46,6 +47,7 @@ def download(
         key (str, optional): authentication key in the form username:password
         proxy (str, optional): Proxy URL.
         md5 (str, optional): MD5 checksum of the download. If None, do not check
+        sha256 (str, optional): SHA256 checksum of the download. If None, do not check
         max_redirect_hops (int, optional): Maximum number of redirects to follow
         verify (bool, optional): Whether to verify SSL certificates
         timeout (int, optional): Timeout for HTTP requests
@@ -92,7 +94,7 @@ def download(
     os.makedirs(folder, exist_ok=True)
 
     # Check if file is already present locally
-    if md5 is not None and check_integrity(fpath, md5):
+    if md5 is not None or sha256 is not None and check_integrity(fpath, md5, sha256):
         log.info("Using downloaded and verified file: " + fpath)
         return
 
@@ -177,8 +179,8 @@ def download(
     #         % (format_bytes(downloaded), format_bytes(size))
     #     )
 
-    if md5 is not None:
-        if not check_integrity(fpath, md5):
+    if md5 is not None or sha256 is not None:
+        if not check_integrity(fpath, md5, sha256):
             raise RuntimeError("File not found or corrupted.")
         else:
             log.info("File integrity verified!")
@@ -248,10 +250,19 @@ def calculate_md5(fpath: str, chunk_size: int = 1024 * 1024) -> str:
     else:
         md5 = hashlib.md5()
     with open(fpath, "rb") as f:
-        for chunk in iter(lambda: f.read(chunk_size), b""):
+        for chunk in iter(lambda: f.read(chunk_size), b''):
             md5.update(chunk)
     return md5.hexdigest()
 
+def calculate_sha256(fpath: str, chunk_size: int = 1024 * 1024) -> str:
+    if sys.version_info >= (3, 9):
+        sha256_hash = hashlib.sha256(usedforsecurity=False)
+    else:
+        sha256_hash = hashlib.sha256()
+    with open(fpath, 'rb') as f:
+        for chunk in iter(lambda: f.read(chunk_size), b''):
+            sha256_hash.update(chunk)
+    return sha256_hash.hexdigest()
 
 def _get_redirect_url(url: str, max_hops: int = 3) -> str:
     initial_url = url
@@ -274,14 +285,18 @@ def _get_redirect_url(url: str, max_hops: int = 3) -> str:
 def check_md5(fpath: str, md5: str, **kwargs: Any) -> bool:
     return md5 == calculate_md5(fpath, **kwargs)
 
+def sha256_checksum(fpath: str, sha256: str, **kwargs: Any) -> bool:
+    return sha256 == calculate_sha256(fpath, **kwargs)
 
-def check_integrity(fpath: str, md5: Optional[str] = None) -> bool:
+def check_integrity(fpath: str, md5: Optional[str] = None, sha256: Optional[str] = None) -> bool:
     if not os.path.isfile(fpath):
         return False
-    if md5 is None:
+    if md5 is None and sha256 is None:
         return True
-    return check_md5(fpath, md5)
-
+    if md5 is not None and sha256 is None:
+        return check_md5(fpath, md5)
+    if md5 is None and sha256 is not None:
+        return sha256_checksum(fpath, sha256)
 
 def format_bytes(num_bytes):
     units = ["", "K", "M", "G", "T", "P"]
