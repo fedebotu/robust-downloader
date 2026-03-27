@@ -264,8 +264,12 @@ def calculate_sha256(fpath: str, chunk_size: int = 1024 * 1024) -> str:
             sha256_hash.update(chunk)
     return sha256_hash.hexdigest()
 
-def _get_redirect_url(url: str, max_hops: int = 3, session: requests.Session = requests.Session()) -> str:
+def _get_redirect_url(url: str, max_hops: int = 3, session: Optional[requests.Session] = None) -> str:
     initial_url = url
+    # Create a new session if one was not provided, to avoid sharing mutable defaults.
+    if session is None:
+        session = requests.Session()
+        
     headers = {"Method": "HEAD", "User-Agent": USER_AGENT, **dict(session.headers)}
 
     for _ in range(max_hops + 1):
